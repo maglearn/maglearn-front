@@ -2,11 +2,26 @@ import React from 'react';
 import './Datasets.css';
 import Table from "react-bootstrap/Table";
 import MathJax from "react-mathjax";
+import {NavTab, RoutedTabs} from "react-router-tabs";
+import {Redirect, Route, Switch} from "react-router-dom";
 
-function Datasets() {
+function Datasets({match}) {
   return <>
     <h2>Datasets</h2>
-    <DatasetList/>
+    <hr/>
+    <RoutedTabs startPathWith={match.path} className="nav nav-tabs actions-nav"
+                tabClassName="nav-link"
+                activeTabClassName="active">
+      <NavTab to="/list">List</NavTab>
+      <NavTab to="/create">Create</NavTab>
+    </RoutedTabs>
+    <MathJax.Provider>
+      <Switch>
+        <Route path={`${match.path}/list`} component={DatasetList}/>
+        <Route path={`${match.path}/create`} component={DatasetCreate}/>
+        <Route render={() => <Redirect replace to={`${match.path}/list`}/>}/>
+      </Switch>
+    </MathJax.Provider>
   </>
 }
 
@@ -39,7 +54,7 @@ class DatasetList extends React.Component {
         </tr>
         </thead>
         <tbody>
-        {this.state.datasets.map(d => <DatasetRow key={d.name} dataset={d}/>)}
+        {this.state.datasets.map(d => <DatasetRow key={d.id} dataset={d}/>)}
         </tbody>
       </Table>
     );
@@ -59,11 +74,15 @@ function DatasetRow(props) {
         {props.dataset.size}
       </td>
       <td>
-        <MathJax.Provider>
-          <MathJax.Node formula={props.dataset.source_function}/>
-        </MathJax.Provider>
+        <MathJax.Node formula={props.dataset.source_function}/>
       </td>
     </tr>
+  );
+}
+
+function DatasetCreate() {
+  return (
+    <h3>Create</h3>
   );
 }
 
