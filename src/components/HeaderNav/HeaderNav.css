@@ -1,0 +1,8 @@
+.HeaderNavbarBrand-logo {
+    background-color: currentColor;
+    -webkit-mask: url(/safari-pinned-tab.svg) no-repeat;
+    mask: url(/safari-pinned-tab.svg) no-repeat center;
+    mask-size: cover;
+    height: 30px;
+    width: 30px;
+}
