@@ -1,10 +1,10 @@
 import React from 'react';
-import './HeaderNav.css';
+import './Header.css';
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import {NavLink} from "react-router-dom";
 
-function HeaderNav() {
+function Header() {
   return (
     <header>
       <Navbar variant="dark" bg="primary" expand="lg" role="banner">
@@ -35,4 +35,4 @@ function HeaderNavItem(props) {
   );
 }
 
-export default HeaderNav;
+export default Header;

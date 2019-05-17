@@ -1,12 +1,13 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import HeaderNav from "./components/HeaderNav/HeaderNav";
+import Header from "./components/Header/Header";
 import Container from "react-bootstrap/Container";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Datasets from "./components/Datasets/Datasets";
 import Row from "react-bootstrap/Row";
-import {Image} from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 import Col from "react-bootstrap/Col";
+import Content from "./components/Content/Content";
 
 class App extends Component {
   // TODO: Flash messages
@@ -15,7 +16,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Container className="app">
-          <HeaderNav/>
+          <Header/>
           <Row>
             <Col as="main">
               <Switch>
@@ -33,11 +34,10 @@ class App extends Component {
 }
 
 function Home() {
-  return (<Fragment>
-      <h2>Welcome to maglearn</h2>
-      <hr/>
-      <Image alt="maglearn logo" src="logo-full.png" fluid/>
-    </Fragment>
+  return (
+    <Content header="Welcome to maglearn">
+      <Image alt="maglearn logo" src="logo-full.png" style={{width: "600px"}} fluid/>
+    </Content>
   );
 }
 
